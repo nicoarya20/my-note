@@ -1,0 +1,43 @@
+"use client"
+import { Button, Flex, Group, Stack, Text, TextInput, Title } from "@mantine/core";
+import { useRouter } from "next/navigation";
+import { eventNames } from "process";
+import { useState } from "react";
+
+export default function Home() {
+  const [values, setValues] = useState({ email: '', password: '' })
+  const [data, setData] = useState({ dataEmail: 'nico@gmail.com', dataPassword: '123456' })
+  const router = useRouter();
+  return (
+    <Stack align="center" justify="center" h={"100vh"} >
+      <Group>
+        <Stack align="center">
+          <Title>Login</Title>
+          <TextInput value={values.email} onChange={(val) => {
+            console.log(val.currentTarget.value)
+            setValues({
+              ...values,
+              email: val.currentTarget.value
+            })
+          }} label="Email" placeholder="Email" />
+          <TextInput value={values.password} onChange={(val) => {
+            console.log(val.currentTarget.value)
+            setValues({
+              ...values,
+              password: val.currentTarget.value
+            })
+          }} label="Password" placeholder="Password" />
+          <Button onClick={() => {
+            values.email !== data.dataEmail || values.password !== data.dataPassword ? alert("Email or password incorrect") : router.push("/dashboard")
+          }}>Submit</Button>
+          <Flex>
+            <Text>Dont have account</Text>
+            <Button variant="transparent" size="compact-xs" onClick={() => {
+              router.push("/register")
+            }}>Register</Button>
+          </Flex>
+        </Stack>
+      </Group>
+    </Stack>
+  );
+}
