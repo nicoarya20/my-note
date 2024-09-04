@@ -1,0 +1,30 @@
+"use client"
+
+import { Button, Group, Stack, TextInput, Title } from "@mantine/core";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+export default function Register() {
+   const router = useRouter();
+   const [values, setValues] = useState({ email: "", password: "" })
+   const [data, setData] = useState({ dataEmail: "nico@gmail.com", dataPassword: "123456" });
+   return (
+      <Stack align="center" justify="center" h={"100vh"}>
+         <Group>
+            <Stack>
+               <Title>Register</Title>
+               <TextInput value={values.email} onChange={(val) => {
+                  console.log(val.target.value);
+                  setValues({ ...values, email: val.target.value });
+               }} label="Email" placeholder="email" />
+               <TextInput value={values.password} onChange={(val) => {
+                  console.log(val.target.value);
+                  setValues({ ...values, password: val.target.value });
+               }} label="Password" placeholder="password" />
+               <Button  onClick={() => {
+                  values.email !== data.dataEmail || values.password !== data.dataPassword ? alert("Email or password incorrect") : router.push("/dashboard")}}>Submit</Button>
+               <Button onClick={() => router.push("/")}>Back</Button>
+            </Stack>
+         </Group>
+      </Stack>
+   );
+}
