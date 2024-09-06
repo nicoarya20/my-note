@@ -30,3 +30,11 @@ Catetan membuat menu dropdown
 
         </Menu.Dropdown>
         </Menu> */}
+
+
+Cara Push Github
+git status
+git add .
+git status
+git commit -m "Membuat Dashboard, Security, Setting"
+git push origin dashboard(nama branch)
