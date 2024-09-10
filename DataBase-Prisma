@@ -1,3 +1,40 @@
+Sebelum membuat file prisma database ada beberapa yang perlu diperhatikan yaitu :
+DATABASE
+intall:
+
+yarn add @prisma/client prisma
+
+selanjutnya ketik perintah
+
+npx prisma init
+
+ubah pengaturan di .env
+
+DATABASE_URL="postgresql://bip:Production_123@localhost:5433/9sep?schema=public"
+
+pada file prisma/cchema.prisma masukkan model database
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// tambahan model lain jika diperlukan
+lalu jalankan perintah
+
+npx prisma db push untuk sync model ke database
+-------------------------------------------------------
+untuk folder yang baru dipelajari ada (untuk folder dibuat di folder app)
+folder _lib : file prisma.ts
+folder api (sesuai kebutuhan jika nanti ada tambahan file route data basenya ada di folder ini) : 
+( - ada folder list : file route.ts, ada folder login : file route.ts, ada folder register : file route.ts)
+
+
+
 1. generator client
 generator client {
   provider = "prisma-client-js"
@@ -35,3 +72,5 @@ createdAt: Tipe data DateTime, menyimpan waktu pembuatan record. @default(now())
 updatedAt: Tipe data DateTime, menyimpan waktu kapan record terakhir diperbarui. @updatedAt memastikan bahwa setiap kali record diperbarui, nilai ini secara otomatis di-update.
 Kesimpulan:
 Kode ini mendefinisikan model User di database PostgreSQL menggunakan Prisma. Model ini mengandung informasi dasar seperti id, name, email, password, serta mencatat kapan record dibuat dan diperbarui.
+
+
